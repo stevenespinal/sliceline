@@ -7,13 +7,13 @@ export const FoodGrid = styled.div`
   gap: 20px;
 `;
 
-export const FoodLabel = styled.div`
+export const FoodLabel = styled(Title)`
   background-color: rgba(256, 256, 256, 0.8);
   position: absolute;
   padding: 5px;
 `;
 
-export const Food = styled(Title)`
+export const Food = styled.div`
   height: 200px;
   background-image: ${({img}) => img ? `url(${img})` : ''};
   background-size: cover;
