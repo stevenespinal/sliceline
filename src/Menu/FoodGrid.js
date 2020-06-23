@@ -22,10 +22,17 @@ export const Food = styled(Title)`
   padding: 10px;
   font-size: 30px;
   border-radius: 7px;
-  box-shadow: 0px 0px 10px 0px gray;
+  transition-property: box-shadow margin-top filter;
+  margin-top: 5px;
+  transition-duration: 0.1s;
+  box-shadow: 0px 0px 2px 0px gray;
   &:hover {
     cursor: pointer;
-    opacity: 0.7;
+    // opacity: 0.7;
+    box-shadow: 0px 5px 10px 0px gray;
+    filter: contrast(100%);
+    margin-top: 0px;
+    margin-bottom: 5px;
   }
 `;
 
