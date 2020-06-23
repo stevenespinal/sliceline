@@ -1,5 +1,3 @@
-// import {Food, FoodLabel} from "../Menu/FoodGrid";
-
 export const foodItems = [
   {
     name: 'Cheese Pizza',

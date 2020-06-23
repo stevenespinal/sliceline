@@ -4,10 +4,7 @@ import { foods} from "../Data/FoodData";
 import {Food, FoodGrid, FoodLabel} from "./FoodGrid";
 
 const MenuStyled = styled.div`
-  // margin: 0px 400px 20px 50px;
-  // height: 1000px;
-  // width: 80%;
-  margin: 50px;
+  margin: 0px 400px 20px 50px;
 `;
 
 
