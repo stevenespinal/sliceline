@@ -23,7 +23,7 @@ export function Toppings({toppings, checkTopping}) {
       {toppings.map((topping, i) => {
         return (
           <CheckboxLabel>
-            <ToppingCheckbox checked={toppings.checked} type="checkbox" onClick={() => checkTopping(i)}/>
+            <ToppingCheckbox checked={topping.checked} type="checkbox" onClick={() => checkTopping(i)}/>
             {topping.name}
           </CheckboxLabel>
         )

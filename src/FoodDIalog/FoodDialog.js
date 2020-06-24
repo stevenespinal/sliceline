@@ -71,7 +71,7 @@ export const ConfirmButton = styled(Title)`
   width: 200px;
   cursor: pointer;
   background-color: ${pizzaRed};
-  ${({disabled}) => 
+  ${({disabled}) =>
   disabled && `
     opacity: .5;
     pointer-events: none;
@@ -90,13 +90,21 @@ const FoodDialogContainer = ({openFood, setOpenFood, setOrders, orders}) => {
   const quantity = useQuantity(openFood && openFood.quantity);
   const toppings = useToppings(openFood.toppings);
   const choiceRadio = useChoice(openFood.choice);
+  const isEditing = openFood.index > -1;
 
   function close() {
     setOpenFood();
   }
 
+
   const order = {...openFood, quantity: quantity.value, toppings: toppings.toppings, choice: choiceRadio.value};
 
+  function editOrder() {
+    const newOrders = [...orders];
+    newOrders[openFood.index] = order;
+    setOrders(newOrders);
+    close();
+  }
   function addToOrder() {
     setOrders([...orders, order]);
     close();
@@ -121,11 +129,11 @@ const FoodDialogContainer = ({openFood, setOpenFood, setOrders, orders}) => {
             <h3>Would you like to add toppings?</h3>
             <Toppings {...toppings}/>
           </>}
-          {openFood.choices && <Choices openFood={openFood} {...choiceRadio}/>}
+          {openFood.choices && <Choices openFood={openFood} choiceRadio={choiceRadio}/>}
         </Content>
         <Footer>
-          <ConfirmButton disabled={openFood.choices && !choiceRadio.value} onClick={addToOrder}>
-            Add to order: {formatPrice(getPrice(order))}
+          <ConfirmButton disabled={openFood.choices && !choiceRadio.value} onClick={isEditing ? editOrder : addToOrder}>
+            {isEditing ? 'Update order' : 'Add to order'}: {formatPrice(getPrice(order))}
           </ConfirmButton>
         </Footer>
       </Dialog>

@@ -25,6 +25,12 @@ const OrderContent = styled(Content)`
 const OrderContainer = styled.div`
   padding: 10px 0;
   border-bottom: 1px solid gray;
+  ${({editable}) => editable ? `
+      &:hover {
+        cursor: pointer;
+        background-color: #e7e7e7;  
+      }` : `pointer-events: none;`
+}
 `;
 
 const OrderItem = styled.div`
@@ -39,24 +45,36 @@ const DetailItem = styled.div`
   font-size: 12px;
 `;
 
-export function Order({orders}) {
+export function Order({orders, setOrders, setOpenFood}) {
   const subtotal = orders.reduce((total, order) => {
     return total + getPrice(order);
   }, 0);
 
   const tax = subtotal * .07;
   const total = subtotal + tax;
+
+
+  const deleteItem = index => {
+    const newOrders = [...orders];
+    newOrders.splice(index, 1);
+    setOrders(newOrders);
+  }
   return (
     <OrderStyle>
       <OrderContent>{orders.length === 0 ? 'Your Order Is Looking Empty' :
         <>
           <OrderContainer>Your Order:</OrderContainer>
-          {orders.map(order => (
-            <OrderContainer>
-              <OrderItem>
+          {orders.map((order, index) => (
+            <OrderContainer editable>
+              <OrderItem onClick={() => setOpenFood({...order, index})}>
                 <div>{order.quantity}</div>
                 <div>{order.name}</div>
-                <div/>
+                <div style={{cursor: 'pointer'}} onClick={(e) => {
+                  e.stopPropagation();
+                  deleteItem(index);
+                }}>
+                  <span role="img" aria-label="garbage">🗑️</span>
+                </div>
                 <div>{formatPrice(getPrice(order))}</div>
               </OrderItem>
               <DetailItem>
