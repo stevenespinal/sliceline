@@ -53,6 +53,12 @@ export const foodItems = [
     section: 'Sides',
     price: 15.99
   },
+  {
+    price: 2,
+    name: 'Soda',
+    section: 'Drinks',
+    choices: ['Coke', 'Sprite', 'Fanta']
+  }
 ];
 
 export function formatPrice(price) {

@@ -62,6 +62,7 @@ export function Order({orders}) {
               <DetailItem>
                 {order.toppings.filter(t => t.checked).map(topping => topping.name).join(", ")}
               </DetailItem>
+              {order.choice && <DetailItem>{order.choice}</DetailItem>}
             </OrderContainer>
           ))}
           <OrderContainer>
@@ -85,7 +86,7 @@ export function Order({orders}) {
       }
       </OrderContent>
       <Footer>
-        <ConfirmButton>Checkout {formatPrice(total)}</ConfirmButton>
+        <ConfirmButton disabled={total === 0}>Checkout {formatPrice(total)}</ConfirmButton>
       </Footer>
     </OrderStyle>
   )
