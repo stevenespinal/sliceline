@@ -24,7 +24,7 @@ function App() {
       <NavBar {...auth} {...toggleCart}/>
       <Order {...toggleCart} {...auth} {...orders} {...openFood}/>
       <Banner/>
-      <Menu {...openFood}/>
+      <Menu {...toggleCart} {...openFood}/>
     </>
   );
 }

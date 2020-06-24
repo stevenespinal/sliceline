@@ -12,6 +12,9 @@ const NavBarStyled = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  @media screen and (max-width: 1200px) {
+    flex-direction: column; 
+  }
 `;
 
 const Logo = styled(Title)`
@@ -46,8 +49,7 @@ export function NavBar({login, loggedIn, logout, toggleCart}) {
           <>
             {loggedIn ?
               <span style={{marginRight: '10px', fontWeight: 'bolder'}}>Welcome {loggedIn.displayName}</span> : ""}
-            {loggedIn ? <CartButton style={{marginRight: '10px'}} onClick={() => toggleCart()}>Cart <span role="img"
-                                                                                                        aria-label="shopping cart">🛒</span></CartButton> : ""}
+            {loggedIn ? <CartButton onClick={() => toggleCart()}>Cart <span role="img" aria-label="shopping cart">🛒</span></CartButton> : ""}
             {loggedIn ? <LoginButton onClick={() => logout()}>Log Out</LoginButton> :
               <LoginButton onClick={() => login()}>Login / Sign Up</LoginButton>}
           </> : 'Loading ...'

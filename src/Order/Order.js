@@ -38,7 +38,6 @@ const OrderItem = styled.div`
   display: grid;
   // grid-template-columns: 5px 120px 20px 20px;
   grid-template-columns: 1px 150px 15px 25px;
-
   justify-content: space-between;
 `;
 
