@@ -36,7 +36,9 @@ const OrderContainer = styled.div`
 const OrderItem = styled.div`
   padding: 10px 0;
   display: grid;
-  grid-template-columns: 20px 150px 20px 60px;
+  // grid-template-columns: 5px 120px 20px 20px;
+  grid-template-columns: 1px 150px 15px 25px;
+
   justify-content: space-between;
 `;
 
@@ -69,13 +71,13 @@ export function Order({orders, setOrders, setOpenFood}) {
               <OrderItem onClick={() => setOpenFood({...order, index})}>
                 <div>{order.quantity}</div>
                 <div>{order.name}</div>
+                <div>{formatPrice(getPrice(order))}</div>
                 <div style={{cursor: 'pointer'}} onClick={(e) => {
                   e.stopPropagation();
                   deleteItem(index);
                 }}>
                   <span role="img" aria-label="garbage">🗑️</span>
                 </div>
-                <div>{formatPrice(getPrice(order))}</div>
               </OrderItem>
               <DetailItem>
                 {order.toppings.filter(t => t.checked).map(topping => topping.name).join(", ")}
