@@ -21,10 +21,11 @@ const OrderContent = styled(Content)`
 `;
 
 
-export function Order() {
+export function Order({orders}) {
+
   return (
     <OrderStyle>
-      <OrderContent>Your Order is Looking Empty.</OrderContent>
+      {orders.length === 0 ? <OrderContent>Your Order is Looking Empty.</OrderContent>: <OrderContent>Found {orders.length} orders</OrderContent>}
       <Footer>
         <ConfirmButton>Checkout</ConfirmButton>
       </Footer>
