@@ -47,7 +47,7 @@ const DetailItem = styled.div`
   font-size: 12px;
 `;
 
-export function Order({orders, setOrders, setOpenFood}) {
+export function Order({orders, setOrders, setOpenFood, loggedIn, login, open}) {
   const subtotal = orders.reduce((total, order) => {
     return total + getPrice(order);
   }, 0);
@@ -61,13 +61,16 @@ export function Order({orders, setOrders, setOpenFood}) {
     newOrders.splice(index, 1);
     setOrders(newOrders);
   }
+
+  if (!open) return null;
+
   return (
     <OrderStyle>
       <OrderContent>{orders.length === 0 ? 'Your Order Is Looking Empty' :
         <>
           <OrderContainer>Your Order:</OrderContainer>
           {orders.map((order, index) => (
-            <OrderContainer editable>
+            <OrderContainer editable key={index}>
               <OrderItem onClick={() => setOpenFood({...order, index})}>
                 <div>{order.quantity}</div>
                 <div>{order.name}</div>
@@ -106,7 +109,9 @@ export function Order({orders, setOrders, setOpenFood}) {
       }
       </OrderContent>
       <Footer>
-        <ConfirmButton disabled={total === 0}>Checkout {formatPrice(total)}</ConfirmButton>
+        <ConfirmButton disabled={total === 0} onClick={() => {
+          loggedIn ? console.log('Logged In') : login()
+        }}>Checkout {formatPrice(total)}</ConfirmButton>
       </Footer>
     </OrderStyle>
   )

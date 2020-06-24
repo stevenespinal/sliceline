@@ -86,7 +86,7 @@ export function getPrice(order) {
   return order.quantity * (order.price + order.toppings.filter(topping => topping.checked).length * pricePerTopping);
 }
 
-const FoodDialogContainer = ({openFood, setOpenFood, setOrders, orders}) => {
+const FoodDialogContainer = ({openFood, setOpenFood, setOrders, orders, setOpen}) => {
   const quantity = useQuantity(openFood && openFood.quantity);
   const toppings = useToppings(openFood.toppings);
   const choiceRadio = useChoice(openFood.choice);
@@ -108,7 +108,9 @@ const FoodDialogContainer = ({openFood, setOpenFood, setOrders, orders}) => {
   function addToOrder() {
     setOrders([...orders, order]);
     close();
-    console.log(orders);
+    // console.log(orders);
+    setOpen(true);
+
   }
 
   function hasToppings(food) {
