@@ -21,6 +21,10 @@ const Dialog = styled.div`
   left: calc(50% - 250px);
   display: flex;
   flex-direction: column;
+  @media screen and (max-width: 768px) {
+    left: 0;
+    width: 100%;
+  }
 `;
 
 const DialogShadow = styled.div`
@@ -45,13 +49,12 @@ const DialogBannerName = styled(FoodLabel)`
   font-size: 30px;
   padding: 5px 40px;
   top: ${({img}) => img ? '100px' : '20px'};
-  // top: 100px;
 `;
 
 export const Content = styled.div`
   overflow: auto;
   min-height: 100px;
-  padding: 0px 40px 80px 40px;
+  padding: 0px 40px 50px 40px;
 `;
 
 export const Footer = styled.div`
@@ -77,7 +80,11 @@ export const ConfirmButton = styled(Title)`
     pointer-events: none;
     background-color: gray;
   `
-}
+  }
+  @media screen and (max-width: 768px) {
+    width: 320px;
+  }
+
 `;
 
 const pricePerTopping = 0.50;

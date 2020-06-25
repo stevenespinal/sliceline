@@ -18,7 +18,7 @@ const OrderStyle = styled.div`
 `;
 
 const OrderContent = styled(Content)`
-  padding: 20px;
+  padding: 40px 20px;
   height: 100%;
 `;
 

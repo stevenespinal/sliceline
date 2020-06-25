@@ -5,10 +5,6 @@ import {Food, FoodGrid, FoodLabel} from "./FoodGrid";
 
 const MenuStyled = styled.div`
   margin: 50px;
-  // ${({open}) => open && `
-  //   // margin: 0px 30px 20px 50px;
-  //   margin: 50px;
-  // `}
   @media screen and (min-width: 1200px) {
     margin: 0px 400px 20px 50px;
   }
