@@ -4,6 +4,8 @@ import {ConfirmButton, Footer, Content} from "../FoodDIalog/FoodDialog";
 import {formatPrice} from "../Data/FoodData";
 import {getPrice} from "../FoodDIalog/FoodDialog";
 
+const database = window.firebase.database();
+
 const OrderStyle = styled.div`
   position: fixed;
   right: 0;
@@ -45,6 +47,33 @@ const DetailItem = styled.div`
   color: gray;
   font-size: 12px;
 `;
+
+function sendOrder(orders, {email, displayName}) {
+  const newOrderRef = database.ref('orders').push();
+  const newOrders = orders.map(order => {
+    return Object.keys(order).reduce((acc, orderKey) => {
+      if (!order[orderKey]) {
+        return acc;
+      }
+      if (orderKey === 'toppings') {
+        return {
+          ...acc,
+          [orderKey]: order[orderKey].filter(({checked}) => checked).map(({name}) => name)
+        };
+      }
+      return {
+        ...acc,
+        [orderKey]: order[orderKey]
+      }
+    }, {});
+  });
+
+  newOrderRef.set({
+    order: newOrders,
+    email,
+    displayName
+  })
+}
 
 export function Order({orders, setOrders, setOpenFood, loggedIn, login, open}) {
   const subtotal = orders.reduce((total, order) => {
@@ -109,7 +138,7 @@ export function Order({orders, setOrders, setOpenFood, loggedIn, login, open}) {
       </OrderContent>
       <Footer>
         <ConfirmButton disabled={total === 0} onClick={() => {
-          loggedIn ? console.log('Logged In') : login()
+          loggedIn ? sendOrder(orders, loggedIn) : login()
         }}>Checkout {formatPrice(total)}</ConfirmButton>
       </Footer>
     </OrderStyle>

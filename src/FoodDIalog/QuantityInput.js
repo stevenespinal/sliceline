@@ -9,6 +9,7 @@ const QuantityInputStyled = styled.input`
   text-align: center;
   border: none;
   outline: none;
+  height: 100%;
 `;
 
 const IncrementContainer = styled(Title)`
