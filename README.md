@@ -1,4 +1,5 @@
-#SliceLine
+# SliceLine
+
 A pizza ordering system with multiple types of foods and editable popup dialogs to customize your order with delicious items from a menu. Includes interactivity with a variety of custom React Hooks. After authenticating with a Google account, we send this order to Firebase Realtime database and a serverless Firebase function will send the user an email confirmation of their order.
 
 Features
